@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
 
 const JobList = () => {
   const [jobs, error] = useJobs();
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState(0);
 
   const jobsPerPage = 5;
-  const numberOfPages = Math.ceil(jobs.length / jobsPerPage);
+  const numberOfPages = Math.ceil(jobs.jobs?.length / jobsPerPage);
   const firstIndexOfCurentItemsShowing = pageNumber * jobsPerPage;
 
   const handleChange = (event, page) => {
@@ -24,20 +24,20 @@ const JobList = () => {
 
   const classes = useStyles();
 
-  const joblisting = jobs
-    .slice(
+  const joblisting = jobs?.jobs
+    ?.slice(
       firstIndexOfCurentItemsShowing,
       firstIndexOfCurentItemsShowing + jobsPerPage
     )
     .map((job) => (
       <JobItem
         key={job.id}
-        company_logo={job.company_logo}
-        company={job.company}
+        company_logo={job.company_logo_url}
+        company={job.company_name}
         job={job.title}
-        type={job.type}
-        createdAt={job.created_at}
-        location={job.location}
+        type={job.job_type}
+        createdAt={job.publication_date}
+        location={job.candidate_required_location}
       />
     ));
 

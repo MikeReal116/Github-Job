@@ -74,7 +74,11 @@ const formatName = (name) => {
 const formatDate = (somedate) => {
   let formatteddate = new Date() - new Date(somedate);
   formatteddate = Math.round(formatteddate / (1000 * 60 * 60 * 24));
-  if (formatteddate < 30) {
+  if (formatteddate < 1) {
+    return 'Today';
+  } else if (formatteddate === 1) {
+    return 'Yesterday';
+  } else if (formatteddate < 30) {
     return `${formatteddate}  days ago`;
   }
   return somedate;
@@ -86,7 +90,7 @@ const JobItem = ({ company_logo, company, job, type, createdAt, location }) => {
   return (
     <Card className={classes.card}>
       <CardMedia title='company image'>
-        <img src={company_logo} alt='company_image' className={classes.image} />
+        <img src={company_logo} alt='company' className={classes.image} />
       </CardMedia>
       <Typography className={classes.details}>
         <span>{formatName(company)}</span>

@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 
-const useJob = (id) => {
+const useJob = (name) => {
   const [job, setJobs] = useState([]);
   const [error, setError] = useState('');
 
-  let baseUrl = id
-    ? `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions/${id}.json`
-    : `https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json`;
+  let baseUrl = name
+    ? `https://remotive.io/api/remote-jobs?company_name=${name}`
+    : `https://remotive.io/api/remote-jobs?category=software-dev&limit=30`;
   useEffect(() => {
     const fetchData = async () => {
       try {
